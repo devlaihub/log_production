@@ -1,0 +1,143 @@
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Table Style */
+.table {
+    width: 100%;
+    margin-top: 40px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+/* Button to the Right */
+.btn-container {
+    display: flex;
+    justify-content: flex-end; /* Align the button to the right */
+    margin-bottom: 20px;
+}
+
+.btn-container .btn {
+    display: inline-flex;
+    align-items: center; /* Vertically center the icon and text */
+}
+
+.btn-container .btn i {
+    margin-right: 8px; /* Add space between icon and text */
+}
+
+/* Header Styling */
+.modal-header {
+    background-color: #007bff; /* Set background color */
+    color: white; /* Set text color */
+    border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+    border-bottom-right-radius: 10px; /* Rounded bottom-right corner */
+    text-align: center; /* Center align the title */
+    justify-content: center; /* Ensure it is centered if using Flexbox */
+    display: flex; /* Ensure Flexbox layout is used */
+    align-items: center; /* Vertically center the title */
+}
+
+/* Adjust Modal Body */
+.modal-body {
+    font-size: 14px;
+}
+
+/* Ensure DataTable is scrollable and responsive */
+#productionLogTable_wrapper {
+    overflow: hidden;
+    width: 100% !important;  /* Ensure wrapper takes full width */
+}
+
+#productionLogTable {
+    width: 100% !important;  /* Ensure table takes full width */
+    table-layout: auto; /* Allow the columns to adjust dynamically */
+    overflow-x: auto;  /* Enable horizontal scrolling */
+    border-spacing: 0;  /* Remove space between table cells */
+}
+
+/* DataTable scroll behavior */
+.dataTables_scrollBody {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 400px;  /* Set table height for scrolling */
+}
+
+/* Ensure text in the table is not cut off */
+#productionLogTable th, #productionLogTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Modal adjustments */
+
+
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;  /* Enable scrolling in modal if content overflows */
+}
+
+table.dataTable {
+    width: 100%;
+    table-layout: fixed;
+}
+
+@media (max-width: 768px) {
+    #productionLogTable_wrapper {
+        overflow-x: auto;  /* Horizontal scroll untuk DataTable */
+        width: 100%;
+    }
+
+    #productionLogTable {
+        width: 100%;
+        table-layout: fixed;  /* Membuat tabel lebih responsif */
+    }
+
+    /* Pastikan tabel dapat digulir secara horizontal */
+    .dataTables_scrollBody {
+        overflow-x: auto;
+    }
+
+    /* Styling untuk kolom */
+    #productionLogTable th, #productionLogTable td {
+        padding: 8px;
+        font-size: 12px;  /* Ukuran font lebih kecil di tampilan perangkat kecil */
+    }
+}
