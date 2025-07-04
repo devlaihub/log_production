@@ -66,8 +66,8 @@
                 <tr>
                     <th>Date</th>
                     <th>Product Type</th>
-                    <th>Total Good Product</th>
-                    <th>Total Defect</th>
+                    <th>Total Good Product (Kg) </th>
+                    <th>Total Defect (Kg) </th>
                     <th>User</th>
                     <th>Actions</th> <!-- Added column for Edit -->
                 </tr>
@@ -110,13 +110,13 @@
 
                         <!-- Total Good Product Input -->
                         <div class="form-group">
-                            <label for="total_good_product">Total Good Product:</label>
+                            <label for="total_good_product">Total Good Product (Kg) :</label>
                             <input type="number" name="total_good_product" class="form-control" required>
                         </div>
 
                         <!-- Total Defect Input -->
                         <div class="form-group">
-                            <label for="total_defect">Total Defect:</label>
+                            <label for="total_defect">Total Defect (Kg) :</label>
                             <input type="number" name="total_defect" class="form-control" required>
                         </div>
                     </div>
@@ -159,12 +159,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="total_good_product_edit">Total Good Product:</label>
+                            <label for="total_good_product_edit">Total Good Product (Kg) :</label>
                             <input type="number" name="total_good_product" class="form-control" id="total_good_product_edit" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="total_defect_edit">Total Defect:</label>
+                            <label for="total_defect_edit">Total Defect (Kg) :</label>
                             <input type="number" name="total_defect" class="form-control" id="total_defect_edit" required>
                         </div>
                     </div>
@@ -286,6 +286,21 @@
             });
         });
 
+    </script>
+
+    <!-- auto logout close tab -->
+    <script>
+        window.addEventListener('beforeunload', function(event) {
+            // Mengirim permintaan POST untuk logout jika tab akan ditutup
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ logout: true })
+            });
+        });
     </script>
 
 </body>
