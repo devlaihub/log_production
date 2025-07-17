@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- DataTables JS -->
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+    </script>
 
     <!-- Bootstrap JS for Modal -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -31,28 +33,29 @@
     <!-- Link to the external CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 </head>
+
 <body>
 
     <div class="container">
         <h1>Production Log</h1>
-        <hr>    
+        <hr>
 
-    <!-- User Information Box -->
-    <div class="card">
-        <div class="card-header">
-            <strong>User Information</strong>
+        <!-- User Information Box -->
+        <div class="card">
+            <div class="card-header">
+                <strong>User Information</strong>
+            </div>
+            <div class="card-body">
+                <p><strong>Name:</strong> {{ Auth::user()->name }}</p>
+                <p><strong>ID Card:</strong> {{ Auth::user()->id_card }}</p>
+                <!-- Logout Button -->
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                </form>
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong>Name:</strong> {{ Auth::user()->name }}</p>
-            <p><strong>ID Card:</strong> {{ Auth::user()->id_card }}</p>
-            <!-- Logout Button -->
-            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
-            </form>
-        </div>
-    </div>
-    <br>
+        <br>
         <!-- Button to trigger Add modal -->
         <div class="btn-container">
             <button class="btn btn-primary" data-toggle="modal" data-target="#productionLogModalAdd">
@@ -79,7 +82,8 @@
     </div>
 
     <!-- Modal for Add Production Log -->
-    <div class="modal fade" id="productionLogModalAdd" tabindex="-1" role="dialog" aria-labelledby="productionLogModalLabelAdd" aria-hidden="true">
+    <div class="modal fade" id="productionLogModalAdd" tabindex="-1" role="dialog"
+        aria-labelledby="productionLogModalLabelAdd" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -130,7 +134,8 @@
     </div>
 
     <!-- Modal for Edit Production Log -->
-    <div class="modal fade" id="productionLogModalEdit" tabindex="-1" role="dialog" aria-labelledby="productionLogModalLabelEdit" aria-hidden="true">
+    <div class="modal fade" id="productionLogModalEdit" tabindex="-1" role="dialog"
+        aria-labelledby="productionLogModalLabelEdit" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -145,7 +150,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="date_edit">Date:</label>
-                            <input type="datetime-local" name="date" class="form-control" id="date_edit" required>
+                            <input type="datetime-local" name="date" class="form-control" id="date_edit"
+                                required>
                         </div>
 
                         <div class="form-group">
@@ -160,12 +166,14 @@
 
                         <div class="form-group">
                             <label for="total_good_product_edit">Total Good Product (Kg) :</label>
-                            <input type="number" name="total_good_product" class="form-control" id="total_good_product_edit" required>
+                            <input type="number" name="total_good_product" class="form-control"
+                                id="total_good_product_edit" required>
                         </div>
 
                         <div class="form-group">
                             <label for="total_defect_edit">Total Defect (Kg) :</label>
-                            <input type="number" name="total_defect" class="form-control" id="total_defect_edit" required>
+                            <input type="number" name="total_defect" class="form-control" id="total_defect_edit"
+                                required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -180,7 +188,7 @@
 
     <script>
         // Set the current date and time in the modal form's date input for Add
-        $('#productionLogModalAdd').on('shown.bs.modal', function () {
+        $('#productionLogModalAdd').on('shown.bs.modal', function() {
             var currentDate = new Date();
             var localDateString = currentDate.toLocaleString('sv-SE').slice(0, 16);
             $('#date').val(localDateString);
@@ -191,30 +199,41 @@
             var table = $('#productionLogTable').DataTable({
                 serverSide: false,
                 ajax: {
-                    url: '/production-log/data',  // URL untuk mengambil data
+                    url: '/production-log/data', // URL untuk mengambil data
                     type: 'GET',
                 },
-                columns: [
-                    { data: 'date' },
-                    { data: 'product_type' },
-                    { data: 'good_product' },
-                    { data: 'total_defect' },
-                    { data: 'user_name' },
-                    { 
-                        data: null, 
+                columns: [{
+                        data: 'date'
+                    },
+                    {
+                        data: 'product_type'
+                    },
+                    {
+                        data: 'good_product'
+                    },
+                    {
+                        data: 'total_defect'
+                    },
+                    {
+                        data: 'user_name'
+                    },
+                    {
+                        data: null,
                         defaultContent: '<button class="btn btn-warning btn-sm edit-btn">Edit</button>' // Add Edit button
                     },
                 ],
-                order: [[0, 'desc']],
+                order: [
+                    [0, 'desc']
+                ],
                 responsive: true,
                 scrolX: true,
-                processing: true,  // Enable loading indicator
+                processing: true, // Enable loading indicator
             });
 
             // Open modal with the data of the clicked row for editing
             $('#productionLogTable').on('click', '.edit-btn', function() {
                 var data = table.row($(this).closest('tr')).data();
-                
+
                 // Set the modal label and form action to the correct URL
                 $('#productionLogModalLabelEdit').text('Edit Production Log');
                 $('#date_edit').val(data.date);
@@ -223,8 +242,8 @@
                 $('#total_defect_edit').val(data.total_defect);
 
                 // Set the form action to the correct update URL including the ID
-                $('#productionLogFormEdit').attr('action', '/production-log/update/' + data.id); 
-                
+                $('#productionLogFormEdit').attr('action', '/production-log/update/' + data.id);
+
                 // Open the Edit modal
                 $('#productionLogModalEdit').modal('show');
             });
@@ -236,14 +255,15 @@
 
             var form = $(this);
             var formAction = form.attr('action');
-            
+
             // Cek ID input sesuai dengan ID pada modal
             var dateField = form.find('#date, #date_edit'); // Untuk modal Add dan Edit
             var productTypeField = form.find('select[name="product_type"]');
             var totalGoodProductField = form.find('input[name="total_good_product"]');
             var totalDefectField = form.find('input[name="total_defect"]');
 
-            if (dateField.val() && productTypeField.val() && totalGoodProductField.val() && totalDefectField.val()) {
+            if (dateField.val() && productTypeField.val() && totalGoodProductField.val() && totalDefectField
+            .val()) {
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "Do you want to submit this data?",
@@ -262,16 +282,19 @@
                             },
                             data: form.serialize(),
                             success: function(response) {
-                                if(response.status == 'success') {
+                                if (response.status == 'success') {
                                     Swal.fire('Success!', response.message, 'success');
-                                    $('#productionLogModalAdd, #productionLogModalEdit').modal('hide');
-                                    
+                                    $('#productionLogModalAdd, #productionLogModalEdit').modal(
+                                        'hide');
+
                                     // Reload DataTable
                                     $('#productionLogTable').DataTable().ajax.reload();
                                 }
                             },
                             error: function(xhr, status, error) {
-                                Swal.fire('Error!', 'An error occurred while submitting the form. Please try again.', 'error');
+                                Swal.fire('Error!',
+                                    'An error occurred while submitting the form. Please try again.',
+                                    'error');
                             }
                         });
                     }
@@ -279,17 +302,16 @@
             } else {
                 Swal.fire('Error!', 'Please fill in all fields before submitting.', 'error');
             }
-            
+
             // Reset modal form inputs after modal is hidden
-            $('#productionLogModalAdd').on('hidden.bs.modal', function () {
+            $('#productionLogModalAdd').on('hidden.bs.modal', function() {
                 $(this).find('form')[0].reset(); // Reset all inputs in the form
             });
         });
-
     </script>
 
     <!-- auto logout close tab -->
-    <script>
+    {{-- <script>
         window.addEventListener('beforeunload', function(event) {
             // Mengirim permintaan POST untuk logout jika tab akan ditutup
             fetch('/logout', {
@@ -301,7 +323,8 @@
                 body: JSON.stringify({ logout: true })
             });
         });
-    </script>
+    </script> --}}
 
 </body>
+
 </html>

@@ -3,20 +3,27 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductionLogController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return redirect()->route('login'); // Redirect ke login jika belum login
+Route::middleware('web')->group(function () {
+    Route::get('/login-by-hmac', [AuthController::class, 'loginByHmac']);
 });
 
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+// Route::get('/', function () {
+//     return redirect()->route('login'); // Redirect ke login jika belum login
+// });
+
 Route::middleware('auth')->group(function () {
+    
     // Halaman Profil dan production-log hanya bisa diakses oleh pengguna yang sudah login
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Halaman production log
+    Route::get('/', [ProductionLogController::class, 'showForm'])->name('production-log.index');
     Route::get('/production-log', [ProductionLogController::class, 'showForm'])->name('production-log.showForm');
     Route::post('/production-log', [ProductionLogController::class, 'store'])->name('production-log.store');
     Route::get('/production-log/data', [ProductionLogController::class, 'getData'])->name('production-log.data');
@@ -24,15 +31,14 @@ Route::middleware('auth')->group(function () {
 });
 
 // Login Routes
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+// Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+// Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 // logout session close tab
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+// Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
 // Register Routes
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-Route::post('/register', [RegisteredUserController::class, 'store']);
+// Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+// Route::post('/register', [RegisteredUserController::class, 'store']);
 
-require __DIR__.'/auth.php';

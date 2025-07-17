@@ -111,6 +111,18 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+        'shared' => [
+            'driver' => env('SHARED_DB_CONNECTION', 'pgsql'),
+            'host' => env('SHARED_DB_HOST', '127.0.0.1'),
+            'port' => env('SHARED_DB_PORT', '5432'),
+            'database' => env('SHARED_DB_DATABASE', 'laravel'),
+            'username' => env('SHARED_DB_USERNAME', 'root'),
+            'password' => env('SHARED_DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
 
     ],
 
