@@ -51,7 +51,7 @@
                 <!-- Logout Button -->
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
-                    <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Logout ke Homeapps</button>
                 </form>
             </div>
         </div>
@@ -263,7 +263,7 @@
             var totalDefectField = form.find('input[name="total_defect"]');
 
             if (dateField.val() && productTypeField.val() && totalGoodProductField.val() && totalDefectField
-            .val()) {
+                .val()) {
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "Do you want to submit this data?",
