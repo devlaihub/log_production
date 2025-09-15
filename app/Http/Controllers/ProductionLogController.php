@@ -27,11 +27,11 @@ class ProductionLogController extends Controller
         // Validasi form
         $request->validate([
             'date' => 'required|date',
-            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT',
+            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH',
             'total_good_product' => 'required|integer',
             'total_defect' => 'required|integer',
         ]);
-    
+
         try {
             // Menyimpan data form ke dalam tabel production_log dengan menambahkan nama user
             ProductionLog::create([
@@ -42,13 +42,13 @@ class ProductionLogController extends Controller
                 'user_name' => Auth::user()->name,  // Menyimpan nama user yang login
             ]);
             \Log::info('User name: ' . Auth::user()->name);
-    
+
             return response()->json(['status' => 'success', 'message' => 'Data submitted successfully!']);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'An error occurred. Please try again']);
         }
     }
-    
+
 
     // Mendapatkan data produk untuk DataTable
     public function getData(Request $request)
@@ -59,7 +59,6 @@ class ProductionLogController extends Controller
             // Menggunakan DataTables untuk mengembalikan data produk dalam format JSON
             return DataTables::of($productionLogs)
                 ->make(true);
-
         } catch (\Exception $e) {
             // Jika terjadi kesalahan, log error dan kirimkan respons error
             \Log::error('DataTables Error: ' . $e->getMessage());
@@ -71,11 +70,11 @@ class ProductionLogController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
-            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT',
+            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH',
             'total_good_product' => 'required|integer',
             'total_defect' => 'required|integer',
         ]);
-    
+
         try {
             $productionLog = ProductionLog::findOrFail($id);
             $productionLog->date = $request->date;
@@ -83,7 +82,7 @@ class ProductionLogController extends Controller
             $productionLog->good_product = $request->total_good_product;
             $productionLog->total_defect = $request->total_defect;
             $productionLog->save();
-    
+
             return response()->json(['status' => 'success', 'message' => 'Data updated successfully!']);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'An error occurred. Please try again']);
