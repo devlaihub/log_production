@@ -12,6 +12,7 @@ class ProductionLogController extends Controller
 {
 
     // Menampilkan form beserta data produk
+    //
     public function showForm()
     {
         // Mengambil semua data dari tabel production_log, disorting berdasarkan created_at
