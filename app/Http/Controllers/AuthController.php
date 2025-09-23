@@ -71,6 +71,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('http://localhost:8000/homeapps')->with('message', 'Berhasil logout');
+        return redirect('https://hub.lautanairindonesia.com/homeapps')->with('message', 'Berhasil logout');
     }
 }
