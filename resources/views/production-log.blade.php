@@ -71,6 +71,7 @@
                         <th>Product Type</th>
                         <th>Total Good Product (Kg) </th>
                         <th>Total Defect (Kg) </th>
+                        <th>SG</th>
                         <th>User</th>
                         <th>Actions</th> <!-- Added column for Edit -->
                     </tr>
@@ -125,6 +126,13 @@
                                 <label for="total_defect">Total Defect (Kg) :</label>
                                 <input type="number" name="total_defect" class="form-control" required>
                             </div>
+
+                            <!-- SG Input -->
+                            <div class="form-group">
+                                <label for="sg">SG:</label>
+                                <input type="number" name="sg" class="form-control" required step="0.01" required>
+                                <small class="text-muted">Gunakan tanda titik (.) pada nilai SG.</small>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -178,6 +186,12 @@
                                 <input type="number" name="total_defect" class="form-control"
                                     id="total_defect_edit" required>
                             </div>
+
+                            <div class="form-group">
+                                <label for="sg_edit">SG:</label>
+                                <input type="number" name="sg" class="form-control" id="sg_edit" required step="0.01" required>
+                                <small class="text-muted">Gunakan tanda titik (.) pada nilai SG.</small>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -217,6 +231,9 @@
                         {
                             data: 'total_defect'
                         },
+                        { 
+                            data: 'sg' 
+                        },
                         {
                             data: 'user_name'
                         },
@@ -243,6 +260,7 @@
                     $('#product_type_edit').val(data.product_type);
                     $('#total_good_product_edit').val(data.good_product);
                     $('#total_defect_edit').val(data.total_defect);
+                    $('#sg_edit').val(data.sg);
 
                     // Set the form action to the correct update URL including the ID
                     $('#productionLogFormEdit').attr('action', '/production-log/update/' + data.id);
