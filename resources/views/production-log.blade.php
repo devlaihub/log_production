@@ -130,7 +130,7 @@
                             <!-- SG Input -->
                             <div class="form-group">
                                 <label for="sg">SG:</label>
-                                <input type="number" name="sg" class="form-control" required step="0.01" required>
+                                <input type="number" name="sg" class="form-control" required step="0.001" required>
                                 <small class="text-muted">Gunakan tanda titik (.) pada nilai SG.</small>
                             </div>
                         </div>
