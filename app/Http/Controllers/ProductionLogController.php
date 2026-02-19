@@ -22,7 +22,7 @@ class ProductionLogController extends Controller
         // Validasi
         $request->validate([
             'date' => 'required|date',
-            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH',
+            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH,SCW',
             'total_good_product' => 'required|integer',
             'total_defect' => 'required|integer',
             'sg' => 'required',
@@ -72,7 +72,7 @@ class ProductionLogController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
-            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH',
+            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH,SCW',
             'total_good_product' => 'required|integer',
             'total_defect' => 'required|integer',
             'sg' => 'required',

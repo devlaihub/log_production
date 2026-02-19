@@ -112,6 +112,7 @@
                                     <option value="PACS">PACS</option>
                                     <option value="PACV">PACV</option>
                                     <option value="PACA_EXPORT">PACA_EXPORT</option>
+                                    <option value="SCW">SCW</option>
                                 </select>
                             </div>
 
@@ -172,6 +173,7 @@
                                     <option value="PACS">PACS</option>
                                     <option value="PACV">PACV</option>
                                     <option value="PACA_EXPORT">PACA_EXPORT</option>
+                                    <option value="SCW">SCW</option>
                                 </select>
                             </div>
 
