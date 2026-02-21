@@ -25,7 +25,7 @@ class ProductionLogController extends Controller
             'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH,SCW',
             'total_good_product' => 'required|integer',
             'total_defect' => 'required|integer',
-            'sg' => 'required',
+            'sg' => 'nullable',
         ]);
 
         try {
