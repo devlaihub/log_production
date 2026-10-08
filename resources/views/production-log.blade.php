@@ -113,6 +113,11 @@
                                     <option value="PACV">PACV</option>
                                     <option value="PACA_EXPORT">PACA_EXPORT</option>
                                     <option value="SCW">SCW</option>
+                                    <option value="REPACKING_PACA_LOKAL">REPACKING_PACA_LOKAL</option>
+                                    <option value="REPACKING_PACA_EXPORT">REPACKING_PACA_EXPORT</option>
+                                    <option value="REPACKING_PACV">REPACKING_PACV</option>
+                                    <option value="REPACKING_PACS">REPACKING_PACS</option>
+                                    <option value="REPACKING_PAC_ACH">REPACKING_PAC_ACH</option>
                                 </select>
                             </div>
 
@@ -174,6 +179,11 @@
                                     <option value="PACV">PACV</option>
                                     <option value="PACA_EXPORT">PACA_EXPORT</option>
                                     <option value="SCW">SCW</option>
+                                    <option value="REPACKING_PACA_LOKAL">REPACKING_PACA_LOKAL</option>
+                                    <option value="REPACKING_PACA_EXPORT">REPACKING_PACA_EXPORT</option>
+                                    <option value="REPACKING_PACV">REPACKING_PACV</option>
+                                    <option value="REPACKING_PACS">REPACKING_PACS</option>
+                                    <option value="REPACKING_PAC_ACH">REPACKING_PAC_ACH</option>
                                 </select>
                             </div>
 

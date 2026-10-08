@@ -22,7 +22,7 @@ class ProductionLogController extends Controller
         // Validasi
         $request->validate([
             'date' => 'required|date',
-            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH,SCW',
+            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH,SCW,REPACKING_PACA_LOKAL,REPACKING_PACA_EXPORT,REPACKING_PACV,REPACKING_PACS,REPACKING_PAC_ACH',
             'total_good_product' => 'required|integer',
             'total_defect' => 'required|integer',
             // 'sg' => 'nullable',
@@ -46,7 +46,6 @@ class ProductionLogController extends Controller
             \Log::info('User name: ' . Auth::user()->name);
 
             return response()->json(['status' => 'success', 'message' => 'Data submitted successfully!']);
-
         } catch (\Exception $e) {
             \Log::error('Store Error: ' . $e->getMessage());
             return response()->json(['status' => 'error', 'message' => 'An error occurred. Please try again']);
@@ -60,7 +59,6 @@ class ProductionLogController extends Controller
             $productionLogs = ProductionLog::query();
 
             return DataTables::of($productionLogs)->make(true);
-
         } catch (\Exception $e) {
             \Log::error('DataTables Error: ' . $e->getMessage());
             return response()->json(['error' => 'Something went wrong while fetching data'], 500);
@@ -72,7 +70,7 @@ class ProductionLogController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
-            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH,SCW',
+            'product_type' => 'required|in:PACA,PACS,PACV,PACA_EXPORT,ACH,SCW,REPACKING_PACA_LOKAL,REPACKING_PACA_EXPORT,REPACKING_PACV,REPACKING_PACS,REPACKING_PAC_ACH',
             'total_good_product' => 'required|integer',
             'total_defect' => 'required|integer',
             // 'sg' => 'required',
@@ -93,7 +91,6 @@ class ProductionLogController extends Controller
             $productionLog->save();
 
             return response()->json(['status' => 'success', 'message' => 'Data updated successfully!']);
-
         } catch (\Exception $e) {
             \Log::error('Update Error: ' . $e->getMessage());
             return response()->json(['status' => 'error', 'message' => 'An error occurred. Please try again']);
